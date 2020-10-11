@@ -35,7 +35,7 @@ class SignUpTest(TestCase):
         client = Client()
 
         user = {
-            'nam'     : 'jeny',
+            'nam'      : 'jeny',
             'email'    : 'test2@naver.com',
             'password' : '9999999'
         }
@@ -153,7 +153,7 @@ class SignInTest(TestCase):
         client = Client()
 
         user = {
-            'email' : 'test145@naver.com',
+            'email'    : 'test145@naver.com',
             'password' : '123456789'
         }
 

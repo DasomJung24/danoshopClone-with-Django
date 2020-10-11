@@ -12,8 +12,8 @@ def login_decorator(func):
         
         try:
             access_token = request.headers['Authorization']
-            data = jwt.decode(access_token, SECRET['secret'], algorithm = ALGORITHM)
-            user = User.objects.get(id=data['user_id'])
+            data         = jwt.decode(access_token, SECRET['secret'], algorithm = ALGORITHM)
+            user         = User.objects.get(id=data['user_id'])
             request.user = user
         
         except jwt.DecodeError:

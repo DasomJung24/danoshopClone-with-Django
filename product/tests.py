@@ -20,41 +20,41 @@ class ProductListTest(TestCase):
             name = 'test_type2'
         )
         Product.objects.create(
-            id   = 1,
-            name = 'test1',
-            price = 10000,
-            discount_rate = 10,
+            id              = 1,
+            name            = 'test1',
+            price           = 10000,
+            discount_rate   = 10,
             product_type_id = 1,
-            detail = 'test1',
-            sub_detail = 'test1',
-            sub_name = 'test1',            
+            detail          = 'test1',
+            sub_detail      = 'test1',
+            sub_name        = 'test1',            
         )
         Product.objects.create(
-            id   = 2,
-            name = 'test1',
-            price = 10000,
-            discount_rate = 10,
+            id              = 2,
+            name            = 'test1',
+            price           = 10000,
+            discount_rate   = 10,
             product_type_id = 1,
-            detail = 'test1',
-            sub_detail = 'test1',
-            sub_name = 'test1',            
+            detail          = 'test1',
+            sub_detail      = 'test1',
+            sub_name        = 'test1',            
         )
         Product.objects.create(
-            id   = 3,
-            name = 'test1',
-            price = 10000,
-            discount_rate = 10,
+            id              = 3,
+            name            = 'test1',
+            price           = 10000,
+            discount_rate   = 10,
             product_type_id = 2,
-            detail = 'test1',
-            sub_detail = 'test1',
-            sub_name = 'test1',            
+            detail          = 'test1',
+            sub_detail      = 'test1',
+            sub_name        = 'test1',            
         )
         Image.objects.create(
-            image = 'test1.test1',
+            image      = 'test1.test1',
             product_id = 1
         )
         Image.objects.create(
-            image = 'test2.test1',
+            image      = 'test2.test1',
             product_id = 1
         )
         ProductCategory.objects.create(category_id=1, product_id=1)
@@ -78,26 +78,26 @@ class ProductListTest(TestCase):
             {
                 'product_list':[
                     {
-                        'image':['test1.test1','test2.test1'],
-                        'name':'test1',
-                        'price':10000,
-                        'discount_rate':10,
-                        'discount_price':9000,
-                        'product_id':1,
-                        'new':True,
-                        'free_shipment':False,
-                        'sale':False
+                        'image'          : ['test1.test1','test2.test1'],
+                        'name'           : 'test1',
+                        'price'          : 10000,
+                        'discount_rate'  : 10,
+                        'discount_price' : 9000,
+                        'product_id'     : 1,
+                        'new'            : True,
+                        'free_shipment'  : False,
+                        'sale'           : False
                     },
                     {
-                        'image':[],
-                        'name':'test1',
-                        'price':10000,
-                        'discount_rate':10,
-                        'discount_price':9000,
-                        'product_id':3,
-                        'new':True,
-                        'free_shipment':False,
-                        'sale':False
+                        'image'          : [],
+                        'name'           : 'test1',
+                        'price'          : 10000,
+                        'discount_rate'  : 10,
+                        'discount_price' : 9000,
+                        'product_id'     : 3,
+                        'new'            : True,
+                        'free_shipment'  : False,
+                        'sale'           : False
                     }
                 ]
             }
@@ -131,41 +131,41 @@ class ProductDetailTest(TestCase):
             name = 'test_type2'
         )
         Product.objects.create(
-            id   = 1,
-            name = 'test1',
-            price = 10000,
-            discount_rate = 10,
+            id              = 1,
+            name            = 'test1',
+            price           = 10000,
+            discount_rate   = 10,
             product_type_id = 1,
-            detail = 'test1',
-            sub_detail = 'test1',
-            sub_name = 'test1',            
+            detail          = 'test1',
+            sub_detail      = 'test1',
+            sub_name        = 'test1',            
         )
         Product.objects.create(
-            id   = 2,
-            name = 'test1',
-            price = 10000,
-            discount_rate = 10,
+            id              = 2,
+            name            = 'test1',
+            price           = 10000,
+            discount_rate   = 10,
             product_type_id = 1,
-            detail = 'test1',
-            sub_detail = 'test1',
-            sub_name = 'test1',            
+            detail          = 'test1',
+            sub_detail      = 'test1',
+            sub_name        = 'test1',            
         )
         Product.objects.create(
-            id   = 3,
-            name = 'test1',
-            price = 10000,
-            discount_rate = 10,
+            id              = 3,
+            name            = 'test1',
+            price           = 10000,
+            discount_rate   = 10,
             product_type_id = 2,
-            detail = 'test1',
-            sub_detail = 'test1',
-            sub_name = 'test1',            
+            detail          = 'test1',
+            sub_detail      = 'test1',
+            sub_name        = 'test1',            
         )
         Image.objects.create(
-            image = 'test1.test1',
+            image      = 'test1.test1',
             product_id = 1
         )
         Image.objects.create(
-            image = 'test2.test1',
+            image      = 'test2.test1',
             product_id = 1
         )
         ProductCategory.objects.create(category_id=1, product_id=1)
@@ -189,17 +189,17 @@ class ProductDetailTest(TestCase):
             {
                 'product_data':[
                     {
-                        'image':['test1.test1','test2.test1'],
-                        'name':'test1',
-                        'price':10000,
-                        'discount_rate':10,
-                        'discount_price':9000,
-                        'product_id':1,
-                        'sub_name':'test1',
-                        'detail':'test1',
-                        'sub_detail':'test1',
-                        'free_shipment':False,
-                        'sale':False
+                        'image'          : ['test1.test1','test2.test1'],
+                        'name'           : 'test1',
+                        'price'          : 10000,
+                        'discount_rate'  : 10,
+                        'discount_price' : 9000,
+                        'product_id'     : 1,
+                        'sub_name'       : 'test1',
+                        'detail'         : 'test1',
+                        'sub_detail'     : 'test1',
+                        'free_shipment'  : False,
+                        'sale'           : False
                     }
                 ]
             }

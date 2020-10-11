@@ -13,6 +13,9 @@ class ReviewView(View):
 
         product_id = request.GET.get('product_number', None)
         if product_id == None:
+            return JsonResponse({'message':'INVALID REQUEST'}, status=400)
+
+        if not Product.objects.filter(id=product_id).exists():
             return JsonResponse({'message':'NOT FOUND'}, status=404)
 
         review = Review.objects.create(
@@ -52,10 +55,10 @@ class ReviewView(View):
             return JsonResponse({'message':'NOT FOUND'}, status=404)
         data = json.loads(request.body)
 
-        review = Review.objects.get(id=review_id)
-        review.title = data['title']
+        review         = Review.objects.get(id=review_id)
+        review.title   = data['title']
         review.content = data['content']
-        review.score = data['score']
+        review.score   = data['score']
         review.save()
 
         ReviewImage.objects.filter(review_id=review_id).delete()
@@ -66,12 +69,12 @@ class ReviewView(View):
 
     @login_decorator
     def delete(self, request, review_id):
-        
-        if not Review.objects.filter(id=review_id).exists():
+        try:
+            review = Review.objects.get(id=review_id)
+            review.delete()
+            return JsonResponse({'message':'SUCCESS'}, status=200)
+        except Review.DoesNotExist:
             return JsonResponse({'message':'NOT FOUND'}, status=404)
-        Review.objects.get(review_id).delete()
-
-        return JsonResponse({'message':'SUCCESS'}, status=200)
 
 class ReviewDetailView(View):
     def get(self, request, review_id):

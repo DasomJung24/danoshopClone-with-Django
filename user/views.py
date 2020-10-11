@@ -1,17 +1,16 @@
+from django.views    import View
+from django.http     import JsonResponse
+from .models         import User
+from my_settings     import SECRET, ALGORITHM
 import jwt
 import bcrypt
 import json
 import datetime
 
-from django.views    import View
-from django.http     import JsonResponse
-
-from .models         import User
-from my_settings     import SECRET, ALGORITHM
-
 class SignUpView(View):
     def post(self, request):
         data = json.loads(request.body)
+        
         MINIMUM_PASSWORD = 6
         MAXIMUM_PASSWORD = 30
 
@@ -56,8 +55,8 @@ class SignInView(View):
                 return JsonResponse({'message':'INVALID USER'}, status=400)
 
             new_password = data['password']
-            user = User.objects.get(email=data['email'])
-            password = user.password
+            user         = User.objects.get(email=data['email'])
+            password     = user.password
 
             if not bcrypt.checkpw(new_password.encode('utf-8'), password.encode('utf-8')):
                 return JsonResponse({'message':'WRONG_PASSWORD'}, status=400)

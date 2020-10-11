@@ -1,9 +1,10 @@
-from django.views   import View
-from django.http    import JsonResponse
-from user.utils     import login_decorator
-from .models        import Cart
-from product.models import Product, Image
-from user.models    import User
+from django.views     import View
+from django.http      import JsonResponse
+from user.utils       import login_decorator
+from .models          import Cart
+from product.models   import Product, Image
+from user.models      import User
+from django.db.models import Q
 import json
 
 class CartView(View):
@@ -14,13 +15,13 @@ class CartView(View):
         if not Product.objects.filter(id=data['product_id']).exists():
             return JsonResponse({'message':'INVALID REQUEST'}, status=400)
 
-        if Cart.objects.filter(product_id=data['product_id'], user=request.user).exists():
-            return JsonResponse({'message':'INVALID REQUEST'}, status=400)
+        if Cart.objects.filter(Q(product_id=data['product_id']) & Q(user=request.user)).exists():
+            return JsonResponse({'message':'ALREADY EXIST'}, status=400)
         
         Cart.objects.create(
-            user = request.user,
+            user       = request.user,
             product_id = data['product_id'],
-            count = data['count']
+            count      = data['count']
         )
 
         return JsonResponse({'message':'SUCCESS'}, status=200)
@@ -30,13 +31,13 @@ class CartView(View):
         carts = Cart.objects.filter(user=request.user).select_related('product')
         
         results = [{
-            'id':cart.id,
-            'product_id':cart.product.id,
-            'name':cart.product.name,
-            'image':Image.objects.filter(product_id=cart.product).first().image,
-            'price':int(cart.product.price if cart.product.discount_rate==0 \
-                        else cart.product.price // 100 * (100-cart.product.discount_rate)),
-            'count':cart.count
+            'id'         : cart.id,
+            'product_id' : cart.product.id,
+            'name'       : cart.product.name,
+            'image'      : Image.objects.filter(product_id=cart.product.id).first().image,
+            'price'      : int(cart.product.price if cart.product.discount_rate==0 \
+                            else cart.product.price // 100 * (100-cart.product.discount_rate)),
+            'count'      : cart.count
         } for cart in carts]
 
         return JsonResponse({'cart_list':results}, status=200)
@@ -46,10 +47,12 @@ class CartView(View):
         try:
             data = json.loads(request.body)
             cart = Cart.objects.get(id=cart_id)
-            if data['click'] == '+':
+            if data['button'] == '+':
                 cart.count += 1
                 cart.save()
-            elif data['click'] == '-':
+            elif data['button'] == '-':
+                if cart.count == 1:
+                    return JsonResponse({'message':'INVALID REQUEST'}, status=400)
                 cart.count -= 1
                 cart.save()
             else:

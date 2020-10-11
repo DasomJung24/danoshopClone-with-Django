@@ -18,7 +18,7 @@ class Review(models.Model):
         db_table = 'reviews'
 
 class ReviewImage(models.Model):
-    image = models.URLField(null=True)
+    image  = models.URLField(null=True)
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
 
     def __str__(self):
