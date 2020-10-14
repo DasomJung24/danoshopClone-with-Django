@@ -1,11 +1,13 @@
+import json
+
 from django.views     import View
 from django.http      import JsonResponse
+from django.db.models import Q
 from user.utils       import login_decorator
 from .models          import Cart
 from product.models   import Product, Image
 from user.models      import User
-from django.db.models import Q
-import json
+
 
 class CartView(View):
     @login_decorator

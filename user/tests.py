@@ -1,11 +1,13 @@
-from django.test import TestCase, Client
-from my_settings import SECRET, ALGORITHM
-from .models     import User
-from .utils      import login_decorator
 import jwt
 import bcrypt
 import json
 import datetime
+
+from django.test import TestCase, Client
+from my_settings import SECRET, ALGORITHM
+from .models     import User
+from .utils      import login_decorator
+
 
 class SignUpTest(TestCase):
     def setUp(self):

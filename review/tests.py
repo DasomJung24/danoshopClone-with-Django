@@ -1,12 +1,14 @@
+import json
+import jwt
+import datetime
+
 from django.test    import TestCase, Client
+from my_settings    import SECRET, ALGORITHM
 from user.models    import User
 from product.models import Product, ProductCategory, Category
 from user.utils     import login_decorator
 from .models        import Review, ReviewImage
-from my_settings    import SECRET, ALGORITHM
-import json
-import jwt
-import datetime
+
 
 class ReviewTest(TestCase):
     def setUp(self):

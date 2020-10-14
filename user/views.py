@@ -1,11 +1,14 @@
-from django.views    import View
-from django.http     import JsonResponse
-from .models         import User
-from my_settings     import SECRET, ALGORITHM
 import jwt
 import bcrypt
 import json
 import datetime
+
+from django.views    import View
+from django.http     import JsonResponse
+from my_settings     import SECRET, ALGORITHM
+from .models         import User
+
+
 
 class SignUpView(View):
     def post(self, request):

@@ -1,10 +1,12 @@
+import json
+
 from django.views   import View
 from django.http    import JsonResponse
 from .models        import Review, ReviewImage
 from user.utils     import login_decorator
 from product.models import Product
 from user.models    import User
-import json
+
 
 class ReviewView(View):
     @login_decorator

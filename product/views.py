@@ -1,8 +1,9 @@
 from django.views           import View
 from django.http            import JsonResponse
 from django.db.models       import Q
-from .models                import Product, ProductCategory, Category, ProductType, Image
 from django.core.exceptions import ObjectDoesNotExist
+from .models                import Product, ProductCategory, Category, ProductType, Image
+
 
 class ProductListView(View):
     def get(self, request):

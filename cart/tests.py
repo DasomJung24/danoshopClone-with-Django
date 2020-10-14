@@ -1,12 +1,15 @@
+import json
+import jwt 
+import datetime
+
 from django.test    import TestCase, Client
+from my_settings    import SECRET, ALGORITHM
 from user.utils     import login_decorator
 from user.models    import User
 from product.models import Product, Image, Category, ProductCategory
 from .models        import Cart
-from my_settings    import SECRET, ALGORITHM
-import json
-import jwt 
-import datetime
+
+
 
 class CartTest(TestCase):
     maxDiff = None
